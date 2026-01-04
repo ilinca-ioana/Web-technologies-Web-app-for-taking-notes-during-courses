@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./db');
-const User = require('./models/User');
+const User = require('./models/User.js');
 const Subject = require('./models/Subject');
 const Note = require('./models/Note');
 const Group = require('./models/Group');
