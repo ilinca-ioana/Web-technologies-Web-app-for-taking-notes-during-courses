@@ -21,7 +21,7 @@ require('./authentication.js');
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173', 'https://web-app-for-taking-notes-during-courses.onrender.com'],
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   credentials: true
 }));
@@ -99,7 +99,7 @@ app.get('/api/auth/google/callback',
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
-    res.redirect(`http://localhost:5173/auth-success?token=${token}`);
+    res.redirect(`https://web-app-for-taking-notes-during-courses.onrender.com/auth-success?token=${token}`);
   }
 );
 
