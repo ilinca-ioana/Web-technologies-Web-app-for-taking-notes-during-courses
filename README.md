@@ -2,6 +2,11 @@
 
 A **Single Page Application (SPA)** designed to help students organize, manage, and share their course and lab notes efficiently. The platform allows students to write in Markdown, upload attachments, and collaborate via study groups.
 
+## 🔗 Live Demo
+👉 **Access the application here:** [https://web-app-for-taking-notes-during-courses.onrender.com](https://web-app-for-taking-notes-during-courses.onrender.com)
+
+---
+
 ## 🚀 Key Features
 
 * **🔐 Authentication:** Secure login with Google OAuth (specifically optimized for `@stud.ase.ro` accounts).
@@ -15,7 +20,7 @@ A **Single Page Application (SPA)** designed to help students organize, manage, 
 ## 🛠️ Tech Stack
 
 ### Client (Frontend)
-* **React.js** (Vite) - For a fast and reactive UI.
+* **React.js (Vite)** - For a fast and reactive UI.
 * **React Router** - For client-side routing.
 * **SimpleMDE** - Markdown editor integration.
 * **React Markdown** - Rendering markdown content.
@@ -28,16 +33,18 @@ A **Single Page Application (SPA)** designed to help students organize, manage, 
 * **Passport.js** - Google OAuth 2.0 authentication strategy.
 * **Multer** - Middleware for handling file uploads.
 
-## ⚙️ Installation & Setup
+### Deployment
+* **Render** - Hosting for both the Static Site (Frontend) and Web Service (Backend).
 
-Follow these steps to run the project locally.
+## ⚙️ Installation & Setup (Local Development)
+
+Follow these steps if you want to run the project locally on your machine.
 
 ### 1. Clone the repository
 ```bash
-git clone <repository_url>
-cd <repository_folder>
+git clone https://github.com/focsaiuliastefania/Web-technologies-Web-app-for-taking-notes-during-courses
+cd Web-technologies-Web-app-for-taking-notes-during-courses
 ```
-
 
 ### 2. Backend Setup
 ```bash
@@ -54,12 +61,14 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 SESSION_SECRET=your_session_secret
 ```
 
+Note: For local development, ensure your Google Cloud Console allows redirects to http://localhost:8080.
+
 Start the backend server:
 ```bash
 node server.js
 ```
 
-### 3. Frontend Setup
+### 3. Frontend Setup, in a new Terminal
 ```bash
 cd client
 npm install
