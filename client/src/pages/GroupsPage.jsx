@@ -16,6 +16,7 @@ function GroupsPage() {
 
   const token = localStorage.getItem('authToken');
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleAuthError = useCallback((response) => {
     if (response.status === 401 || response.status === 403) {
@@ -28,7 +29,7 @@ function GroupsPage() {
 
   const fetchGroups = useCallback(async () => {
     try {
-      const response = await fetch('https://web-technologies-web-app-for-taking.onrender.com/api/groups', {
+      const response = await fetch(`${API_URL}/api/groups`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -41,7 +42,7 @@ function GroupsPage() {
     } catch (error) {
       console.error(error);
     }
-  }, [token, handleAuthError]);
+  }, [token, handleAuthError, API_URL]);
 
   useEffect(() => {
     fetchGroups();
@@ -53,7 +54,7 @@ function GroupsPage() {
     if (!newGroup.name) return;
 
     try {
-      const response = await fetch('https://web-technologies-web-app-for-taking.onrender.com/api/groups', {
+      const response = await fetch(`${API_URL}/api/groups`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,14 +80,14 @@ function GroupsPage() {
     setSelectedNote(null);
     setGroupMembers([]);
     try {
-      const responseNotes = await fetch(`https://web-technologies-web-app-for-taking.onrender.com/api/groups/${group.id}/notes`, {
+      const responseNotes = await fetch(`${API_URL}/api/groups/${group.id}/notes`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (responseNotes.ok) {
         const dataNotes = await responseNotes.json();
         setGroupNotes(dataNotes);
       }
-      const responseMembers = await fetch(`https://web-technologies-web-app-for-taking.onrender.com/api/groups/${group.id}/members`, {
+      const responseMembers = await fetch(`${API_URL}/api/groups/${group.id}/members`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (responseMembers.ok) {
@@ -105,7 +106,7 @@ function GroupsPage() {
     if (!emailToSend) return;
 
     try {
-      const response = await fetch(`https://web-technologies-web-app-for-taking.onrender.com/api/groups/${selectedGroup.id}/members`, {
+      const response = await fetch(`${API_URL}/api/groups/${selectedGroup.id}/members`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -122,7 +123,7 @@ function GroupsPage() {
         setMessage('Member invited successfully!');
         setNewMemberEmail('');
         
-        const responseMembers = await fetch(`https://web-technologies-web-app-for-taking.onrender.com/api/groups/${selectedGroup.id}/members`, {
+        const responseMembers = await fetch(`${API_URL}/api/groups/${selectedGroup.id}/members`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (responseMembers.ok) {
@@ -143,7 +144,7 @@ function GroupsPage() {
       if(!confirm('Remove this note from the group?')) return;
 
       try {
-          const response = await fetch(`https://web-technologies-web-app-for-taking.onrender.com/api/groups/${selectedGroup.id}/notes/${noteId}`, {
+          const response = await fetch(`${API_URL}/api/groups/${selectedGroup.id}/notes/${noteId}`, {
               method: 'DELETE',
               headers: { 'Authorization': `Bearer ${token}` }
           });

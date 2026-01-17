@@ -22,10 +22,16 @@ const app = express();
 
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8080';
+const ALLOWED_ORIGINS = [
+  CLIENT_URL,
+  'http://localhost:5173',
+  'https://web-technologies-web-app-for-taking.onrender.com',
+  'https://web-app-for-taking-notes-during-courses.onrender.com'
+];
 
 
 app.use(cors({
-  origin: [CLIENT_URL, 'http://localhost:5173', 'https://web-technologies-web-app-for-taking.onrender.com'],
+  origin: ALLOWED_ORIGINS,
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   credentials: true
 }));
